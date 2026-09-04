@@ -102,7 +102,7 @@ body {
 
 .modal-content {
   background: white;
-  margin: 10% auto;
+  margin: 5% auto; /* Reduced from 10% to bring it up a bit */
   padding: 20px;
   border-radius: 12px;
   width: 85%;
@@ -110,6 +110,10 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  
+  /* Add these two lines to fix the cut-off buttons: */
+  max-height: 85vh; 
+  overflow-y: auto; 
 }
 
 .close {
