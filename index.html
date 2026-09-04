@@ -6,7 +6,6 @@
   <title>Our Love Story</title>
   <link rel="manifest" href="./manifest.json">
   <link rel="stylesheet" href="./style.css">
-  <!-- Leaflet Map CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <meta name="theme-color" content="#121212">
 </head>
@@ -24,16 +23,25 @@
       <p id="aiDailyMessage" class="daily-message">Loading today's reason to smile...</p>
     </header>
 
-    <!-- Spotify Our Song -->
+    <!-- Spotify Our Song (Fixed with a working global track) -->
     <section class="card media-card">
       <h2>Our Song 🎵</h2>
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40riOy7x9W7GXjyhZZUSVa?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <!-- To change the song, replace "0tgVpDi06ZXBcAW4m6c7t3" with your own Spotify track ID -->
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0tgVpDi06ZXBcAW4m6c7t3?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
     </section>
 
     <!-- Milestones & Counter -->
     <section class="card milestone-card">
       <h2>Days Together</h2>
       <div id="daysCounter" class="ticker">0</div>
+    </section>
+    
+    <!-- Secret Love Letter (Restored) -->
+    <section class="card secret-card">
+      <h2>Secret Love Letter 💌</h2>
+      <p>Unlock our secret memory on a special date.</p>
+      <input type="date" id="secretDateInput" style="color: black; padding: 5px; width: 90%;">
+      <div id="secretLetterContent" style="display: none; margin-top: 15px; padding: 10px; background: #2a2a2a; border-radius: 8px;"></div>
     </section>
 
     <!-- Do You Love Me Widget -->
@@ -54,13 +62,20 @@
       <div id="jarOutput" class="jar-paper" style="display: none;"></div>
     </section>
 
-    <!-- Open When Letters -->
+    <!-- Expanded Open When Letters -->
     <section class="card open-when-card">
       <h2>Open When... 💌</h2>
       <div class="letter-grid">
         <button class="action-btn letter-btn" data-mood="sad">You're Sad 🌧️</button>
         <button class="action-btn letter-btn" data-mood="happy">You're Happy ☀️</button>
         <button class="action-btn letter-btn" data-mood="miss">You Miss Me 🥺</button>
+        <button class="action-btn letter-btn" data-mood="angry">You're Angry 😡</button>
+        <button class="action-btn letter-btn" data-mood="bored">You're Bored 🥱</button>
+        <button class="action-btn letter-btn" data-mood="annoyed">You're Annoyed 🙄</button>
+        <button class="action-btn letter-btn" data-mood="stressed">You're Stressed 😫</button>
+        <button class="action-btn letter-btn" data-mood="insecure">You Feel Insecure 🫂</button>
+        <button class="action-btn letter-btn" data-mood="sick">You're Sick 🤒</button>
+        <button class="action-btn letter-btn" data-mood="overthinking">Overthinking 🌀</button>
       </div>
     </section>
 
@@ -78,7 +93,7 @@
     <button id="closeMoodBtn" class="action-btn">Come back 🔙</button>
   </div>
 
-  <!-- Settings Modal (Kept from earlier build with the scrollbar fix) -->
+  <!-- Settings Modal (Restored Secret Letter Inputs) -->
   <div id="setupModal" class="modal">
     <div class="modal-content">
       <span id="closeModal" class="close">&times;</span>
@@ -87,14 +102,18 @@
       <input type="text" id="partnerNameInput" style="color: black;">
       <label>Anniversary Date:</label>
       <input type="date" id="anniversaryInput" style="color: black;">
+      
+      <label>Secret Unlock Date:</label>
+      <input type="date" id="secretUnlockDateInput" style="color: black;">
+      <label>Secret Letter:</label>
+      <textarea id="secretLetterInput" style="color: black;" rows="4"></textarea>
+      
       <button id="saveSyncBtn" class="action-btn">Save & Sync 💕</button>
     </div>
   </div>
 
-  <!-- External Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <!-- Firebase v10 Compat -->
   <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database-compat.js"></script>
   <script src="./script.js"></script>
