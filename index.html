@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Love Story</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./style.css">
+  <meta name="theme-color" content="#ff4b72">
+</head>
+<body>
+  <div class="top-nav">
+    <button id="settingsBtn" class="icon-btn">⚙️</button>
+  </div>
+
+  <header class="hero">
+    <h1>Hey <span id="displayPartnerName">Partner</span> 💕</h1>
+    <p id="displaySubtext">Every day with you is a blessing.</p>
+  </header>
+
+  <main>
+    <section class="card counter-card">
+      <h2>Days Together</h2>
+      <div id="daysCounter" class="ticker">0</div>
+    </section>
+
+    <section class="card polaroid-card">
+      <div class="photo-frame" id="photoFrame">
+        <img id="memoryPhoto" src="" alt="Our Memory" style="display: none;">
+        <span id="photoPlaceholder">Tap to add a photo</span>
+      </div>
+      <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+    </section>
+
+    <section class="card secret-card">
+      <h2>Secret Love Letter</h2>
+      <p>Unlock our secret memory on a special date.</p>
+      <input type="date" id="secretDateInput">
+      <div id="secretLetterContent" style="display: none;"></div>
+    </section>
+  </main>
+
+  <div id="setupModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>Settings</h2>
+      <label>User Name:</label>
+      <input type="text" id="userNameInput">
+      
+      <label>Partner Name:</label>
+      <input type="text" id="partnerNameInput">
+      
+      <label>Anniversary Date:</label>
+      <input type="date" id="anniversaryInput">
+      
+      <label>Secret Unlock Date:</label>
+      <input type="date" id="secretUnlockDateInput">
+      
+      <label>Secret Letter:</label>
+      <textarea id="secretLetterInput"></textarea>
+      
+      <label>Daily Notification Time:</label>
+      <input type="time" id="notificationTimeInput">
+      
+      <button id="saveSyncBtn" class="btn">Save & Sync 💕</button>
+      <button id="enablePushBtn" class="btn alt-btn">Enable Push Notifications 🔔</button>
+    </div>
+  </div>
+
+  <!-- External Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Firebase v10 Compat -->
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database-compat.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
