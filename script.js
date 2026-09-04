@@ -132,7 +132,10 @@ closeModal.addEventListener("click", () => setupModal.style.display = "none");
 
 // 8. Firebase Sync & Secret Letter Date Check
 try {
+  // 🛑 CRITICAL FIX: You MUST replace these placeholder values with your actual Firebase keys!
+  // If you leave these as "YOUR_API_KEY", the Save & Sync button will do nothing.
   const firebaseConfig = {
+   const firebaseConfig = {
     apiKey: "AIzaSyCPGc7u3K2Zbm6Ibgg_EFgleBkzUlcJDp0",
     authDomain: "my-lv-story.firebaseapp.com",
     databaseURL: "https://my-lv-story-default-rtdb.firebaseio.com",
@@ -142,7 +145,7 @@ try {
     appId: "1:491070772667:web:d02e0f4fd100ff8a70609e"
   };
   
-  firebase.initializeApp(firebaseConfig);
+ firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
   const appRef = db.ref("appSettings");
 
@@ -151,16 +154,14 @@ try {
     if (data) {
       document.getElementById("displayPartnerName").innerText = data.partnerName || "Partner";
       
-      // Populate settings inputs
       document.getElementById("partnerNameInput").value = data.partnerName || "";
       document.getElementById("anniversaryInput").value = data.anniversaryDate || "";
       document.getElementById("secretUnlockDateInput").value = data.secretUnlockDate || "";
       document.getElementById("secretLetterInput").value = data.secretLetter || "";
       
-      // Fix: Exact Days Calculation
       if (data.anniversaryDate) {
         const annivDate = new Date(data.anniversaryDate);
-        annivDate.setHours(0,0,0,0); // Strip time to prevent offset errors
+        annivDate.setHours(0,0,0,0);
         const today = new Date();
         today.setHours(0,0,0,0);
         const msDiff = today - annivDate;
@@ -183,7 +184,7 @@ try {
     });
   });
 
-  // Secret Letter Unlock Logic
+ // Secret Letter Unlock Logic
   document.getElementById("secretDateInput").addEventListener("change", (e) => {
     appRef.once("value").then((snapshot) => {
       const data = snapshot.val();

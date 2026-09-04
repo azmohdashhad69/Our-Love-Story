@@ -34,13 +34,24 @@ body {
   20% { opacity: 0.4; }
   100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; }
 }
+
 .top-nav { width: 100%; display: flex; justify-content: flex-end; padding: 1rem; box-sizing: border-box; }
 main { display: flex; flex-direction: column; align-items: center; padding: 10px; padding-bottom: 50px; }
-
 .hero { text-align: center; margin-bottom: 1rem; }
 .hero h1 { color: var(--primary); margin-bottom: 5px; }
 .daily-message { font-style: italic; color: var(--text-muted); font-size: 0.9rem; }
 
+.card {
+  background: var(--card-dark);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 10px 0;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+  border: 1px solid #2a2a2a;
+  text-align: center;
+}
 .card h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 1px solid #333; padding-bottom: 8px;}
 .ticker { font-size: 3rem; font-weight: bold; color: var(--primary); }
 
@@ -54,13 +65,47 @@ button:active { transform: scale(0.95); }
 
 .jar-paper { background: #fff9e6; color: #333; padding: 15px; border-radius: 4px; margin-top: 15px; font-family: 'Courier New', Courier, monospace; transform: rotate(-2deg); box-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
 
-.letter-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+/* Expanded Grid for 10 Moods */
+/* Expanded Grid for 10 Moods (Fixed Layout) */
+.letter-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 12px; 
+}
 
-.map-container { height: 250px; width: 100%; border-radius: 12px; z-index: 1; } z-index: 1; }
+.letter-btn {
+  margin-top: 0; /* Removes awkward spacing */
+  padding: 12px 5px; /* Tighter padding so text fits */
+  font-size: 0.85rem; /* Slightly smaller text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
 
-/* Overlays (Moods & Settings) */
-.fullscreen-overlay, .modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(18, 18, 18, 0.95); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; padding: 20px; text-align: center; }
-.modal { display: none; background: rgba(0,0,0,0.8); }
-.modal-content { background: white; padding: 20px; border-radius: 12px; width: 85%; max-width: 400px; display: flex; flex-direction: column; gap: 10px; max-height: 85vh; overflow-y: auto; color: black; text-align: left; }
-.close { align-self: flex-end; font-size: 1.5rem; cursor: pointer; color: black; }
-input, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+/* Overlays (Fixed Z-Index and Stacking) */
+.fullscreen-overlay { 
+  position: fixed; 
+  top: 0; left: 0; width: 100vw; height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  z-index: 9999; /* Forced to absolute top */
+  padding: 20px; 
+  text-align: center; 
+  box-sizing: border-box;
+}
+
+.modal { 
+  position: fixed; 
+  top: 0; left: 0; width: 100vw; height: 100vh; 
+  background: rgba(0,0,0,0.8);
+  display: none; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  z-index: 9990; /* Sits below the mood overlay but above the site */
+  padding: 20px; 
+}
