@@ -2,73 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Our Love Story</title>
   <link rel="manifest" href="./manifest.json">
   <link rel="stylesheet" href="./style.css">
-  <meta name="theme-color" content="#ff4b72">
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <meta name="theme-color" content="#121212">
 </head>
-<body>
+<body class="dark-theme">
+  <!-- Floating Hearts Background -->
+  <div id="heartContainer" class="heart-container"></div>
+
   <div class="top-nav">
-    <button id="settingsBtn" class="icon-btn">⚙️</button>
+    <button id="settingsBtn" class="icon-btn action-btn" style="width: auto; margin:0;">⚙️</button>
   </div>
 
-  <header class="hero">
-    <h1>Hey <span id="displayPartnerName">Partner</span> 💕</h1>
-    <p id="displaySubtext">Every day with you is a blessing.</p>
-  </header>
+  <main id="mainContent">
+    <header class="hero">
+      <h1>Hey <span id="displayPartnerName">Partner</span> 💖</h1>
+      <p id="aiDailyMessage" class="daily-message">Loading today's reason to smile...</p>
+    </header>
 
-  <main>
-    <section class="card counter-card">
+    <!-- Spotify Our Song -->
+    <section class="card media-card">
+      <h2>Our Song 🎵</h2>
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40riOy7x9W7GXjyhZZUSVa?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </section>
+
+    <!-- Milestones & Counter -->
+    <section class="card milestone-card">
       <h2>Days Together</h2>
       <div id="daysCounter" class="ticker">0</div>
     </section>
 
-    <section class="card polaroid-card">
-      <div class="photo-frame" id="photoFrame">
-        <img id="memoryPhoto" src="" alt="Our Memory" style="display: none;">
-        <span id="photoPlaceholder">Tap to add a photo</span>
+    <!-- Do You Love Me Widget -->
+    <section class="card interactive-card">
+      <h2>Do you love me? 🥺</h2>
+      <div class="button-group">
+        <button id="yesBtn" class="action-btn yes-btn">Yes! 💕</button>
+        <button id="noBtn" class="no-btn">No</button>
       </div>
-      <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+      <p id="loveResponse" style="display:none; color: var(--primary); margin-top: 10px; font-weight: bold;"></p>
     </section>
 
-    <section class="card secret-card">
-      <h2>Secret Love Letter</h2>
-      <p>Unlock our secret memory on a special date.</p>
-      <input type="date" id="secretDateInput">
-      <div id="secretLetterContent" style="display: none;"></div>
+    <!-- Random Reasons Jar -->
+    <section class="card jar-card">
+      <h2>Reasons Why I Love You 🫙</h2>
+      <p>Tap the jar to pull out a memory.</p>
+      <button id="jarBtn" class="action-btn jar-btn">Reach inside ✨</button>
+      <div id="jarOutput" class="jar-paper" style="display: none;"></div>
+    </section>
+
+    <!-- Open When Letters -->
+    <section class="card open-when-card">
+      <h2>Open When... 💌</h2>
+      <div class="letter-grid">
+        <button class="action-btn letter-btn" data-mood="sad">You're Sad 🌧️</button>
+        <button class="action-btn letter-btn" data-mood="happy">You're Happy ☀️</button>
+        <button class="action-btn letter-btn" data-mood="miss">You Miss Me 🥺</button>
+      </div>
+    </section>
+
+    <!-- Memory Map -->
+    <section class="card map-card">
+      <h2>Our Spots 📍</h2>
+      <div id="memoryMap" class="map-container"></div>
     </section>
   </main>
 
+  <!-- Mood Overlay -->
+  <div id="moodOverlay" class="fullscreen-overlay" style="display: none;">
+    <h2 id="moodTitle"></h2>
+    <p id="moodContent"></p>
+    <button id="closeMoodBtn" class="action-btn">Come back 🔙</button>
+  </div>
+
+  <!-- Settings Modal (Kept from earlier build with the scrollbar fix) -->
   <div id="setupModal" class="modal">
     <div class="modal-content">
       <span id="closeModal" class="close">&times;</span>
       <h2>Settings</h2>
-      <label>User Name:</label>
-      <input type="text" id="userNameInput">
-      
       <label>Partner Name:</label>
-      <input type="text" id="partnerNameInput">
-      
+      <input type="text" id="partnerNameInput" style="color: black;">
       <label>Anniversary Date:</label>
-      <input type="date" id="anniversaryInput">
-      
-      <label>Secret Unlock Date:</label>
-      <input type="date" id="secretUnlockDateInput">
-      
-      <label>Secret Letter:</label>
-      <textarea id="secretLetterInput"></textarea>
-      
-      <label>Daily Notification Time:</label>
-      <input type="time" id="notificationTimeInput">
-      
-      <button id="saveSyncBtn" class="btn">Save & Sync 💕</button>
-      <button id="enablePushBtn" class="btn alt-btn">Enable Push Notifications 🔔</button>
+      <input type="date" id="anniversaryInput" style="color: black;">
+      <button id="saveSyncBtn" class="action-btn">Save & Sync 💕</button>
     </div>
   </div>
 
-  <!-- External Libraries -->
+  <!-- External Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <!-- Firebase v10 Compat -->
   <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database-compat.js"></script>

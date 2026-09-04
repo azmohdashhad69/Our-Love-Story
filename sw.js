@@ -1,5 +1,13 @@
-const CACHE_NAME = "love-story-v1";
-const ASSETS = ["./", "./index.html", "./style.css", "./script.js", "./manifest.json"];
+const CACHE_NAME = "love-story-v4";
+const ASSETS = [
+  "./", 
+  "./index.html", 
+  "./style.css", 
+  "./script.js", 
+  "./manifest.json",
+  "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+  "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
