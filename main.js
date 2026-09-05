@@ -131,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // 7. Firebase Initialization
   try {
     const firebaseConfig = {
-     const firebaseConfig = {
     apiKey: "AIzaSyCPGc7u3K2Zbm6Ibgg_EFgleBkzUlcJDp0",
     authDomain: "my-lv-story.firebaseapp.com",
     databaseURL: "https://my-lv-story-default-rtdb.firebaseio.com",
