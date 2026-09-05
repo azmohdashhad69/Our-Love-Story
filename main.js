@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const firebaseConfig = {
     apiKey: "AIzaSyCPGc7u3K2Zbm6Ibgg_EFgleBkzUlcJDp0",
     authDomain: "my-lv-story.firebaseapp.com",
-    databaseURL: "https://my-lv-story-default-rtdb.firebaseio.com",
+    databaseURL: "[https://my-lv-story-default-rtdb.asia-southeast1.firebasedatabase.app](https://my-lv-story-default-rtdb.asia-southeast1.firebasedatabase.app)",
     projectId: "my-lv-story",
     storageBucket: "my-lv-story.firebasestorage.app",
     messagingSenderId: "491070772667",
