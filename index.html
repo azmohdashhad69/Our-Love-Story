@@ -6,7 +6,6 @@
   <title>Our Love Story</title>
   <link rel="manifest" href="./manifest.json">
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <meta name="theme-color" content="#121212">
 </head>
 <body class="dark-theme">
@@ -23,11 +22,10 @@
       <p id="aiDailyMessage" class="daily-message">Loading today's reason to smile...</p>
     </header>
 
-    <!-- Spotify Our Song (Fixed with a working global track) -->
+    <!-- Spotify Our Song -->
     <section class="card media-card">
       <h2>Our Song 🎵</h2>
-      <!-- To change the song, replace "0tgVpDi06ZXBcAW4m6c7t3" with your own Spotify track ID -->
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1bMkimTb47umgNP6xCi4A1?utm_source=generator&si=65ffe0a4a1434a93" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4JpKVNYnVcJ8tuZdanmU_M?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </section>
 
     <!-- Milestones & Counter -->
@@ -36,7 +34,7 @@
       <div id="daysCounter" class="ticker">0</div>
     </section>
     
-    <!-- Secret Love Letter (Restored) -->
+    <!-- Secret Love Letter -->
     <section class="card secret-card">
       <h2>Secret Love Letter 💌</h2>
       <p>Unlock our secret memory on a special date.</p>
@@ -79,10 +77,15 @@
       </div>
     </section>
 
-    <!-- Memory Map -->
-    <section class="card map-card">
-      <h2>Our Spots 📍</h2>
-      <div id="memoryMap" class="map-container"></div>
+    <!-- Bucket List (Replacing the Map) -->
+    <section class="card bucket-list-card">
+      <h2>Our Future 🌟</h2>
+      <ul class="bucket-list">
+        <li>Travel to a new city together ✈️</li>
+        <li>Stargaze all night long 🌌</li>
+        <li>Cook a fancy dinner from scratch 🍝</li>
+        <li>Build a blanket fort and watch movies ⛺</li>
+      </ul>
     </section>
   </main>
 
@@ -93,7 +96,7 @@
     <button id="closeMoodBtn" class="action-btn">Come back 🔙</button>
   </div>
 
-  <!-- Settings Modal (Restored Secret Letter Inputs) -->
+  <!-- Settings Modal -->
   <div id="setupModal" class="modal">
     <div class="modal-content">
       <span id="closeModal" class="close">&times;</span>
@@ -113,7 +116,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database-compat.js"></script>
   <script src="./script.js"></script>
